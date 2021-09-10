@@ -1,18 +1,19 @@
-var x = 50;
-var y = 50;
-var speedX = 2;
-var speedY = 5;
+var cX = [50, 50, 1200, 1200];
+var cY = [50, 50, 670, 670];
+var speedX = [1, 2, 3, 5];
+var speedY = [2, 3, 5, 7];
 
 /**
  * setup
  * de code in deze functie wordt één keer uitgevoerd door
  * de p5 library, zodra het spel geladen is in de browser
  */
+
+ 
+
 function setup() {
   // Maak een canvas (rechthoek) waarin je je speelveld kunt tekenen
   createCanvas(1280, 720);
-
-  
 }
 
 
@@ -26,14 +27,42 @@ function draw() {
   background('blue');
   // stel vulkleur in
   fill(100, 100, 255);
+  ellipse(cX[0], cY[0], 80, 80);
 
-  // teken een cirkel
-  ellipse(x,y,80,80);
+  fill(255, 0, 0);
+  ellipse(cX[0], cY[1], 80, 80);
 
-  y = y + speedY;
-  x = x + speedX;
+  fill(0, 255, 0);
+  ellipse(cX[1], cY[1], 80, 80);
 
-  if (y >= 720){
-    speedY = speedY * -1;
+  fill(255, 255, 0);
+  ellipse(cX[1], cY[0], 80, 80);
+
+for(var e = 0; e < cY.length; e++){
+for(var i = 0; i < speedY.length; i++){
+
+  cY[e] = cY[e] + speedY[e];
+
+  if (cY[e] >= 680){
+    speedY[i] = speedY[i] * -1;
   }
+  if (cY[e] <= 40){
+    speedY[i] = speedY[i] * -1;
+  }
+}
+}
+
+for(var t = 0; t < cX.length; t++){
+for(var s = 0; s < speedX.length; s++){
+
+  cX[t] = cX[t] + speedX[t];
+
+  if (cX[t] >= 1240){
+    speedX[s] = speedX[s] * -1;
+  }
+  if (cX[t] <= 40){
+    speedX[s] = speedX[s] * -1;
+  }
+}
+}
 }
